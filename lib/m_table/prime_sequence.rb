@@ -2,10 +2,11 @@ module MTable
   # Invoke MTable::PrimeSequence.new(size: given_size) to get
   # the first `given_size` prime numbers.
   class PrimeSequence
-    attr_reader :size
+    attr_reader :size, :list
 
     def initialize(size:)
       @size = size
+      @list = []
     end
 
     def to_a
