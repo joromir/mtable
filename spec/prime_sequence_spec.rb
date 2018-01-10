@@ -29,5 +29,15 @@ RSpec.describe MTable::PrimeSequence do
         expect(sequence.to_a).to contain_exactly(*expected_list)
       end
     end
+
+    context 'when size is 20' do
+      let(:size) { 15 }
+
+      it 'returns a list with prime numbers' do
+        expected_list = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+
+        expect(sequence.to_a).to contain_exactly(*expected_list)
+      end
+    end
   end
 end
