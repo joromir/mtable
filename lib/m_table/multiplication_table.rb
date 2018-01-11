@@ -25,18 +25,8 @@ module MTable
     end
 
     def matrix
-      return [] if integer_list.empty?
-
-      if integer_list.size == 1
-        [[4]]
-      else
-        [
-          [4, 6, 10, 14, 22],
-          [6, 9, 15, 21, 33],
-          [10, 15, 25, 35, 55],
-          [14, 21, 35, 49, 77],
-          [22, 33, 55, 77, 121]
-        ]
+      integer_list.reduce([]) do |acc, elem|
+        acc << integer_list.map { |integer| integer * elem }
       end
     end
   end
