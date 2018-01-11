@@ -25,9 +25,13 @@ module MTable
     end
 
     def matrix
-      integer_list.reduce([]) do |acc, elem|
-        acc << integer_list.map { |integer| integer * elem }
-      end
+      integer_list.reduce([]) { |acc, elem| acc << matrix_row(elem) }
+    end
+
+    private
+
+    def matrix_row(elem)
+      integer_list.map { |integer| integer * elem }
     end
   end
 end
