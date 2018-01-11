@@ -59,5 +59,18 @@ RSpec.describe MTable::MultiplicationTable do
         expect(described_class.new([2, 3, 5, 7, 11]).matrix).to eq table
       end
     end
+
+    context 'when the input is an array of size 4' do
+      it 'returns a 4x4 matrix' do
+        table = [
+          [4, 4, 4, 4],
+          [4, 4, 4, 4],
+          [4, 4, 4, 4],
+          [4, 4, 4, 4]
+        ]
+
+        expect(described_class.new([2, 2, 2, 2]).matrix).to eq table
+      end
+    end
   end
 end
