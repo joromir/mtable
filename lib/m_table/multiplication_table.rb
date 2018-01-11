@@ -1,5 +1,5 @@
 module MTable
-  class MultiplicationTable
+  class MultiplicationTable # :nodoc:
     attr_reader :integer_list
 
     def initialize(integer_list)
