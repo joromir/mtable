@@ -98,6 +98,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   guard-rspec
+  rake
   reek
   rspec
   rubocop
