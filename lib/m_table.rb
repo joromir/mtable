@@ -1,7 +1,7 @@
 require 'byebug'
 
-require 'm_table/integer_helpers'
-require 'm_table/nearest_prime_number'
-require 'm_table/prime_sequence'
-require 'm_table/multipliction_matrix'
-require 'm_table/multiplication_table'
+require_relative 'm_table/integer_helpers'
+require_relative 'm_table/nearest_prime_number'
+require_relative 'm_table/prime_sequence'
+require_relative 'm_table/multipliction_matrix'
+require_relative 'm_table/multiplication_table'

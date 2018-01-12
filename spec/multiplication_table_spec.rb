@@ -50,6 +50,22 @@ RSpec.describe MTable::MultiplicationTable do
         expect(described_class.new([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]).to_s).to eq table
       end
     end
+
+    context 'when input is an array with large numbers' do
+      it 'generates a well formatted table' do
+        table =  "         |        3        4        5        6        7        8     9000\n"\
+                 "---------+---------------------------------------------------------------\n"\
+                 "       3 |        9       12       15       18       21       24    27000\n"\
+                 "       4 |       12       16       20       24       28       32    36000\n"\
+                 "       5 |       15       20       25       30       35       40    45000\n"\
+                 "       6 |       18       24       30       36       42       48    54000\n"\
+                 "       7 |       21       28       35       42       49       56    63000\n"\
+                 "       8 |       24       32       40       48       56       64    72000\n"\
+                 "    9000 |    27000    36000    45000    54000    63000    72000 81000000\n"
+
+        expect(described_class.new([3,4,5,6,7,8,9000]).to_s).to eq table
+      end
+    end
   end
 
   describe '#columns' do

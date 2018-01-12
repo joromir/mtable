@@ -10,13 +10,19 @@ module MTable
 
     def to_s
       columns.each.with_index.reduce(header) do |acc, (elem, position)|
-        item = align_element(integer_list[position])
-
-        "#{acc}#{item} |#{align_elements(elem)}\n"
+        "#{acc}#{table_column(elem, position)}"
       end
     end
 
     private
+
+    def table_column(element, position)
+      "#{align_element(integer_list[position])} |#{align_elements(element)}\n"
+    end
+
+    def cell_size
+      (max * max).to_s.size
+    end
 
     def header
       return '' if integer_list.empty?
@@ -24,22 +30,24 @@ module MTable
       "#{cell_filler(' ')}|#{align_elements(integer_list)}\n#{separator_line}\n"
     end
 
-    def cell_filler(char = '-')
-      char * (max.to_s.size + 2)
-    end
-
     def separator_line
       "#{cell_filler}+#{cell_filler * integer_list.size}"
     end
 
-    def align_elements(column)
-      column.reduce('') { |acc, elem| "#{acc} #{align_element(elem)}" }
+    def weight
+      @weight ||= integer_list.size == 1 ? 1 : 0
+    end
+
+    def cell_filler(char = '-')
+      char * (cell_size + weight + 1)
+    end
+
+    def align_elements(column_array)
+      column_array.reduce('') { |acc, elem| "#{acc} #{align_element(elem)}" }
     end
 
     def align_element(item)
-      return " #{item}" if integer_list.size == 1
-
-      ' ' * ((max * max).to_s.size - item.to_s.size) + item.to_s
+      ' ' * (cell_size + weight - item.to_s.size) + item.to_s
     end
   end
 end
