@@ -17,11 +17,21 @@ module MTable
     private
 
     def table_column(element, position)
-      "#{align_element(integer_list[position])} |#{align_elements(element)}\n"
+      pointer = integer_list[position]
+
+      "#{align_element(pointer)}|#{align_elements(element)}\n"
     end
 
-    def cell_size
-      (max * max).to_s.size
+    def align_elements(column_array)
+      column_array.reduce('') { |acc, elem| "#{acc}#{align_element(elem)}" }
+    end
+
+    def cell_size(offset: 1)
+      (max * max).to_s.size + offset
+    end
+
+    def separator_line
+      "#{cell_filler}+#{cell_filler * integer_list.size}"
     end
 
     def header
@@ -30,24 +40,12 @@ module MTable
       "#{cell_filler(' ')}|#{align_elements(integer_list)}\n#{separator_line}\n"
     end
 
-    def separator_line
-      "#{cell_filler}+#{cell_filler * integer_list.size}"
-    end
-
-    def weight
-      @weight ||= integer_list.size == 1 ? 1 : 0
-    end
-
     def cell_filler(char = '-')
-      char * (cell_size + weight + 1)
-    end
-
-    def align_elements(column_array)
-      column_array.reduce('') { |acc, elem| "#{acc} #{align_element(elem)}" }
+      char * cell_size(offset: 2)
     end
 
     def align_element(item)
-      ' ' * (cell_size + weight - item.to_s.size) + item.to_s
+      ' ' * (cell_size - item.to_s.size) + "#{item} "
     end
   end
 end
