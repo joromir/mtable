@@ -1,4 +1,6 @@
 module MTable
+  # Responsible for the generation of a string representation
+  # for a given multiplication matrix.
   class MultiplicationTable # :nodoc:
     attr_reader :integer_list, :max, :matrix
 
