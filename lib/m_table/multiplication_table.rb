@@ -1,10 +1,11 @@
 module MTable
   class MultiplicationTable # :nodoc:
-    attr_reader :integer_list, :max
+    attr_reader :integer_list, :max, :matrix
 
     def initialize(integer_list)
       @integer_list = integer_list
       @max          = integer_list.max
+      @matrix       = MultiplictionMatrix.new(integer_list).to_a
     end
 
     def to_s
@@ -19,15 +20,7 @@ module MTable
       end
     end
 
-    def matrix
-      integer_list.reduce([]) { |acc, elem| acc << matrix_row(elem) }
-    end
-
     private
-
-    def matrix_row(elem)
-      integer_list.map { |integer| integer * elem }
-    end
 
     def beautify(number)
       ' ' * (offset - number.to_s.size) + number.to_s
