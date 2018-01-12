@@ -9,18 +9,12 @@ module MTable
     end
 
     def to_s
-      matrix.each.with_index.reduce(header) do |acc, (matrix_array, position)|
-        "#{acc}#{formated_row(matrix_array, position)}"
+      matrix.zip(integer_list).reduce(header) do |acc, (matrix_array, pointer)|
+        "#{acc}#{align_element(pointer)}|#{align_elements(matrix_array)}\n"
       end
     end
 
     private
-
-    def formated_row(matrix_array, position)
-      pointer = integer_list[position]
-
-      "#{align_element(pointer)}|#{align_elements(matrix_array)}\n"
-    end
 
     def align_elements(matrix_array)
       matrix_array.reduce('') { |acc, elem| "#{acc}#{align_element(elem)}" }
@@ -28,10 +22,6 @@ module MTable
 
     def align_element(item)
       ' ' * (max_element_size - item.to_s.size) + " #{item} "
-    end
-
-    def cell_size
-      max_element_size + 2
     end
 
     def max_element_size
@@ -51,7 +41,7 @@ module MTable
     end
 
     def cell_filler(char = '-')
-      char * cell_size
+      char * (max_element_size + 2)
     end
   end
 end
