@@ -9,8 +9,6 @@ module MTable
     end
 
     def to_s
-      return '' if integer_list.empty?
-
       columns.each.with_index.reduce(header) do |acc, (elem, position)|
         item = align_element(integer_list[position])
 
@@ -21,29 +19,27 @@ module MTable
     private
 
     def header
-      "#{placeholder(' ')} #{align_elements(integer_list)}\n#{separator}\n"
+      return '' if integer_list.empty?
+
+      "#{cell_filler(' ')}|#{align_elements(integer_list)}\n#{separator_line}\n"
     end
 
-    def placeholder(splitter = '-')
-      splitter * (max.to_s.size + 2)
+    def cell_filler(char = '-')
+      char * (max.to_s.size + 2)
     end
 
-    def separator
-      "#{placeholder}+#{placeholder * integer_list.size}"
+    def separator_line
+      "#{cell_filler}+#{cell_filler * integer_list.size}"
     end
 
     def align_elements(column)
       column.reduce('') { |acc, elem| "#{acc} #{align_element(elem)}" }
     end
 
-    def align_element(number)
-      return " #{number}" if integer_list.size == 1
+    def align_element(item)
+      return " #{item}" if integer_list.size == 1
 
-      ' ' * (offset - number.to_s.size) + number.to_s
-    end
-
-    def offset
-      @offset ||= (max * max).to_s.size
+      ' ' * ((max * max).to_s.size - item.to_s.size) + item.to_s
     end
   end
 end

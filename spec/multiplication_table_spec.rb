@@ -10,7 +10,7 @@ RSpec.describe MTable::MultiplicationTable do
 
     context 'when the input is an array of size one' do
       it 'generates a 1x1 table' do
-        table = "      2\n"\
+        table = "   |  2\n"\
                 "---+---\n"\
                 " 2 |  4\n"
 
@@ -20,7 +20,7 @@ RSpec.describe MTable::MultiplicationTable do
 
     context 'when the input is an array of size five' do
       it 'generates a 5x5 table' do
-        table = "        2   3   5   7  11\n"\
+        table = "    |   2   3   5   7  11\n"\
                 "----+--------------------\n"\
                 "  2 |   4   6  10  14  22\n"\
                 "  3 |   6   9  15  21  33\n"\
@@ -34,7 +34,7 @@ RSpec.describe MTable::MultiplicationTable do
 
     context 'when the input is an array of size ten' do
       it 'generates a 10x10 table' do
-        table = "        2   3   5   7  11  13  17  19  23  29\n"\
+        table = "    |   2   3   5   7  11  13  17  19  23  29\n"\
                 "----+----------------------------------------\n"\
                 "  2 |   4   6  10  14  22  26  34  38  46  58\n"\
                 "  3 |   6   9  15  21  33  39  51  57  69  87\n"\
