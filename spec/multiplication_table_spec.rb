@@ -12,7 +12,7 @@ RSpec.describe MTable::MultiplicationTable do
       it 'generates a 1x1 table' do
         table = "      2\n"\
                 "---+---\n"\
-                " 2 |  2\n"
+                " 2 |  4\n"
 
         expect(described_class.new([2]).to_s).to eq table
       end

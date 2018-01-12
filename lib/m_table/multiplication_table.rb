@@ -37,7 +37,7 @@ module MTable
     end
 
     def align_element(number)
-      return " #{integer_list.last}" if integer_list.size == 1
+      return " #{number}" if integer_list.size == 1
 
       ' ' * (offset - number.to_s.size) + number.to_s
     end
