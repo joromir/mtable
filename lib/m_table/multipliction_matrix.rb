@@ -1,5 +1,5 @@
 module MTable
-  class MultiplictionMatrix
+  class MultiplictionMatrix # :nodoc:
     attr_reader :integer_list
 
     def initialize(integer_list)
