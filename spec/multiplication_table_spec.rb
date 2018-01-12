@@ -63,7 +63,7 @@ RSpec.describe MTable::MultiplicationTable do
                  "        8 |       24        32        40        48        56        64     72000 \n"\
                  "     9000 |    27000     36000     45000     54000     63000     72000  81000000 \n"
 
-        expect(described_class.new([3,4,5,6,7,8,9000]).to_s).to eq table
+        expect(described_class.new([3, 4, 5, 6, 7, 8, 9000]).to_s).to eq table
       end
     end
   end
