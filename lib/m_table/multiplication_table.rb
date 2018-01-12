@@ -1,29 +1,29 @@
 module MTable
   class MultiplicationTable # :nodoc:
-    attr_reader :integer_list, :max, :columns
+    attr_reader :integer_list, :max, :matrix
 
     def initialize(integer_list)
       @integer_list = integer_list
       @max          = integer_list.max
-      @columns      = MultiplictionMatrix.new(integer_list).to_a
+      @matrix       = MultiplictionMatrix.new(integer_list).to_a
     end
 
     def to_s
-      columns.each.with_index.reduce(header) do |acc, (elem, position)|
-        "#{acc}#{table_row(elem, position)}"
+      matrix.each.with_index.reduce(header) do |acc, (matrix_array, position)|
+        "#{acc}#{formated_row(matrix_array, position)}"
       end
     end
 
     private
 
-    def table_row(matrix_row, position)
+    def formated_row(matrix_array, position)
       pointer = integer_list[position]
 
-      "#{align_element(pointer)}|#{align_elements(matrix_row)}\n"
+      "#{align_element(pointer)}|#{align_elements(matrix_array)}\n"
     end
 
-    def align_elements(column_array)
-      column_array.reduce('') { |acc, elem| "#{acc}#{align_element(elem)}" }
+    def align_elements(matrix_array)
+      matrix_array.reduce('') { |acc, elem| "#{acc}#{align_element(elem)}" }
     end
 
     def align_element(item)

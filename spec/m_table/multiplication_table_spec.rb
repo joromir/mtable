@@ -68,16 +68,16 @@ RSpec.describe MTable::MultiplicationTable do
     end
   end
 
-  describe '#columns' do
+  describe '#matrix' do
     context 'when the input is an empty array' do
       it 'is empty' do
-        expect(described_class.new([]).columns).to be_empty
+        expect(described_class.new([]).matrix).to be_empty
       end
     end
 
     context 'when the input is an array of size one' do
       it 'returns a 1x1 matrix' do
-        expect(described_class.new([2]).columns).to eq [[4]]
+        expect(described_class.new([2]).matrix).to eq [[4]]
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe MTable::MultiplicationTable do
           [22, 33, 55, 77, 121]
         ]
 
-        expect(described_class.new([2, 3, 5, 7, 11]).columns).to eq table
+        expect(described_class.new([2, 3, 5, 7, 11]).matrix).to eq table
       end
     end
 
@@ -104,7 +104,7 @@ RSpec.describe MTable::MultiplicationTable do
           [4, 4, 4, 4]
         ]
 
-        expect(described_class.new([2, 2, 2, 2]).columns).to eq table
+        expect(described_class.new([2, 2, 2, 2]).matrix).to eq table
       end
     end
   end
