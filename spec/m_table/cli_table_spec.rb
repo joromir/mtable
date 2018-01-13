@@ -4,22 +4,27 @@ RSpec.describe MTable::CliTable do
   describe '#to_s' do
     context 'when the input is an empty array' do
       it 'generates an empty table' do
-        expect(described_class.new([]).to_s).to eq ''
+        matrix = MTable::MultiplicationMatrix.new([])
+        expect(described_class.new(matrix).to_s).to eq ''
       end
     end
 
     context 'when the input is an array of size one' do
       it 'generates a 1x1 table' do
+        matrix = MTable::MultiplicationMatrix.new([2])
+
         table = "   | 2 \n"\
                 "---+---\n"\
                 " 2 | 4 \n"
 
-        expect(described_class.new([2]).to_s).to eq table
+        expect(described_class.new(matrix).to_s).to eq table
       end
     end
 
     context 'when the input is an array of size five' do
       it 'generates a 5x5 table' do
+        matrix = MTable::MultiplicationMatrix.new([2, 3, 5, 7, 11])
+
         table = "     |   2    3    5    7   11 \n"\
                 "-----+-------------------------\n"\
                 "   2 |   4    6   10   14   22 \n"\
@@ -28,12 +33,15 @@ RSpec.describe MTable::CliTable do
                 "   7 |  14   21   35   49   77 \n"\
                 "  11 |  22   33   55   77  121 \n"
 
-        expect(described_class.new([2, 3, 5, 7, 11]).to_s).to eq table
+        expect(described_class.new(matrix).to_s).to eq table
       end
     end
 
     context 'when the input is an array of size ten' do
       it 'generates a 10x10 table' do
+        integers = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+        matrix = MTable::MultiplicationMatrix.new(integers)
+
         table = "     |   2    3    5    7   11   13   17   19   23   29 \n"\
                 "-----+--------------------------------------------------\n"\
                 "   2 |   4    6   10   14   22   26   34   38   46   58 \n"\
@@ -47,12 +55,14 @@ RSpec.describe MTable::CliTable do
                 "  23 |  46   69  115  161  253  299  391  437  529  667 \n"\
                 "  29 |  58   87  145  203  319  377  493  551  667  841 \n"
 
-        expect(described_class.new([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]).to_s).to eq table
+        expect(described_class.new(matrix).to_s).to eq table
       end
     end
 
     context 'when input is an array with large numbers' do
       it 'generates a well formatted table' do
+        matrix = MTable::MultiplicationMatrix.new([3, 4, 5, 6, 7, 8, 9000])
+
         table =  "          |        3         4         5         6         7         8      9000 \n"\
                  "----------+----------------------------------------------------------------------\n"\
                  "        3 |        9        12        15        18        21        24     27000 \n"\
@@ -63,7 +73,7 @@ RSpec.describe MTable::CliTable do
                  "        8 |       24        32        40        48        56        64     72000 \n"\
                  "     9000 |    27000     36000     45000     54000     63000     72000  81000000 \n"
 
-        expect(described_class.new([3, 4, 5, 6, 7, 8, 9000]).to_s).to eq table
+        expect(described_class.new(matrix).to_s).to eq table
       end
     end
   end

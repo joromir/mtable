@@ -6,7 +6,8 @@ namespace :mtable do
     size = args[:size].to_i
 
     sequence = MTable::PrimeSequence.new(size: size).to_a
+    matrix = MTable::MultiplicationMatrix.new(sequence)
 
-    puts MTable::CliTable.new(sequence).to_s
+    puts MTable::CliTable.new(matrix).to_s
   end
 end

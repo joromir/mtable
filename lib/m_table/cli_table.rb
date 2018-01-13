@@ -2,15 +2,14 @@ module MTable
   # Responsible for the generation of a string representation
   # for a given multiplication matrix.
   class CliTable # :nodoc:
-    attr_reader :integer_list, :matrix
+    attr_reader :matrix
 
-    def initialize(integer_list)
-      @integer_list = integer_list
-      @matrix       = MultiplictionMatrix.new(integer_list)
+    def initialize(symmetrical_matrix)
+      @matrix = symmetrical_matrix
     end
 
     def to_s
-      matrix.to_a.zip(integer_list).reduce(header) do |acc, (matrix_array, pointer)|
+      matrix.to_a.zip(matrix.integer_list).reduce(header) do |acc, (matrix_array, pointer)|
         "#{acc}#{align_element(pointer)}|#{align_elements(matrix_array)}\n"
       end
     end
@@ -32,13 +31,13 @@ module MTable
     def separator
       cell_filler = '-' * (max_element_size + 2)
 
-      "#{cell_filler}+#{cell_filler * integer_list.size}"
+      "#{cell_filler}+#{cell_filler * matrix.integer_list.size}"
     end
 
     def header
-      return '' if integer_list.empty?
+      return '' if matrix.integer_list.empty?
 
-      "#{align_element(' ')}|#{align_elements(integer_list)}\n#{separator}\n"
+      "#{align_element(' ')}|#{align_elements(matrix.integer_list)}\n#{separator}\n"
     end
   end
 end

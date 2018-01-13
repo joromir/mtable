@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe MTable::MultiplictionMatrix do
+RSpec.describe MTable::MultiplicationMatrix do
   describe '#to_a' do
     context 'when the input is an empty array' do
       it 'is empty' do
