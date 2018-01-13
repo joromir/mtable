@@ -9,7 +9,7 @@ module MTable
     end
 
     def to_s
-      matrix.to_a.zip(matrix.integer_list).reduce(header) do |acc, (matrix_array, pointer)|
+      matrix.rows_with_pointers.reduce(header) do |acc, (pointer, matrix_array)|
         "#{acc}#{align_element(pointer)}|#{align_elements(matrix_array)}\n"
       end
     end

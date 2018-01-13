@@ -42,6 +42,19 @@ RSpec.describe MTable::MultiplicationMatrix do
     end
   end
 
+  describe '#rows_with_pointers' do
+    it 'adds pointers for each row' do
+      rows = [
+        [2, [4, 12, 16, 20]],
+        [6, [12, 36, 48, 60]],
+        [8, [16, 48, 64, 80]],
+        [10, [20, 60, 80, 100]]
+      ]
+
+      expect(described_class.new([2, 6, 8, 10]).rows_with_pointers).to eq rows
+    end
+  end
+
   describe '#max' do
     context 'when collection is empty' do
       it 'returns nil' do

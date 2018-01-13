@@ -16,6 +16,10 @@ module MTable
       integer_list.max * integer_list.max
     end
 
+    def rows_with_pointers
+      integer_list.zip(to_a)
+    end
+
     private
 
     def row(item)
