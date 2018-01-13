@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe MTable::MultiplicationTable do
+RSpec.describe MTable::CliTable do
   describe '#to_s' do
     context 'when the input is an empty array' do
       it 'generates an empty table' do

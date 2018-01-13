@@ -1,7 +1,7 @@
 module MTable
   # Responsible for the generation of a string representation
   # for a given multiplication matrix.
-  class MultiplicationTable # :nodoc:
+  class CliTable # :nodoc:
     attr_reader :integer_list, :max, :matrix
 
     def initialize(integer_list)
