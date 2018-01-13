@@ -39,5 +39,13 @@ RSpec.describe MTable::PrimeSequence do
         expect(sequence.to_a).to contain_exactly(*expected_list)
       end
     end
+
+    context 'when size is a -1' do
+      let(:size) { -3 }
+
+      it 'returns an empty collection' do
+        expect(sequence.to_a).to be_empty
+      end
+    end
   end
 end

@@ -9,7 +9,7 @@ module MTable
     end
 
     def to_a
-      return [] if size.zero?
+      return [] if size < 1
 
       primes = [2]
 
