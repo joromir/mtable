@@ -2,16 +2,15 @@ module MTable
   # Responsible for the generation of a string representation
   # for a given multiplication matrix.
   class CliTable # :nodoc:
-    attr_reader :integer_list, :max, :matrix
+    attr_reader :integer_list, :matrix
 
     def initialize(integer_list)
       @integer_list = integer_list
-      @max          = integer_list.max
-      @matrix       = MultiplictionMatrix.new(integer_list).to_a
+      @matrix       = MultiplictionMatrix.new(integer_list)
     end
 
     def to_s
-      matrix.zip(integer_list).reduce(header) do |acc, (matrix_array, pointer)|
+      matrix.to_a.zip(integer_list).reduce(header) do |acc, (matrix_array, pointer)|
         "#{acc}#{align_element(pointer)}|#{align_elements(matrix_array)}\n"
       end
     end
@@ -27,7 +26,7 @@ module MTable
     end
 
     def max_element_size
-      (max * max).to_s.size
+      matrix.max.to_s.size
     end
 
     def separator

@@ -10,6 +10,12 @@ module MTable
       integer_list.reduce([]) { |acc, elem| acc << row(elem) }
     end
 
+    def max
+      return if integer_list.empty?
+
+      integer_list.max * integer_list.max
+    end
+
     private
 
     def row(item)
