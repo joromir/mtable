@@ -30,7 +30,7 @@ RSpec.describe MTable::PrimeSequence do
       end
     end
 
-    context 'when size is 20' do
+    context 'when size is 15' do
       let(:size) { 15 }
 
       it 'returns a list with prime numbers' do
