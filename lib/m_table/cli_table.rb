@@ -31,19 +31,15 @@ module MTable
     end
 
     def separator
-      body_separator = cell_filler * integer_list.size
+      cell_filler = '-' * (max_element_size + 2)
 
-      "#{cell_filler}+#{body_separator}"
+      "#{cell_filler}+#{cell_filler * integer_list.size}"
     end
 
     def header
       return '' if integer_list.empty?
 
-      "#{cell_filler(' ')}|#{align_elements(integer_list)}\n#{separator}\n"
-    end
-
-    def cell_filler(char = '-')
-      char * (max_element_size + 2)
+      "#{align_element(' ')}|#{align_elements(integer_list)}\n#{separator}\n"
     end
   end
 end
