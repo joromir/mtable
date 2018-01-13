@@ -20,6 +20,10 @@ module MTable
       integer_list.zip(to_a)
     end
 
+    def empty?
+      integer_list.empty?
+    end
+
     private
 
     def row(item)
