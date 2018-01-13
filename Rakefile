@@ -7,6 +7,6 @@ namespace :mtable do
 
     sequence = MTable::PrimeSequence.new(size: size).to_a
 
-    puts MTable::MultiplicationTable.new(sequence).to_s
+    puts MTable::CliTable.new(sequence).to_s
   end
 end
