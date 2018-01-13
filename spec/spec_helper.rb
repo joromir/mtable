@@ -1,3 +1,7 @@
+require 'simplecov'
+
+SimpleCov.start
+
 require './lib/m_table'
 
 RSpec.configure do |config|
