@@ -10,11 +10,9 @@ module MTable
     end
 
     def each
-      if block_given?
-        (1..size).each { |element| yield(fibonacci_number(element)) }
-      else
-        enum_for(:each)
-      end
+      return enum_for(:each) unless block_given?
+
+      (1..size).each { |element| yield(fibonacci_number(element)) }
     end
   end
 end
